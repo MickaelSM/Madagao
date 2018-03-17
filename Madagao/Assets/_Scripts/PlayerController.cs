@@ -5,11 +5,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 5.0f;
     [SerializeField] float runSpeed = 8.0f;
     [SerializeField] float rotationSpeed = 5.0f;
+    [SerializeField] GameObject projectile;
 
     public static bool lockMovement = false;
 
     private float currentSpeed;
-    private Transform m_Cam;
+    private Camera m_Cam;
     private Vector3 m_vertical;
     private Vector3 m_horizontal;
 
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
         //Gets the main camera and stores it in a variable
         if (Camera.main != null)
         {
-            m_Cam = Camera.main.transform;
+            m_Cam = Camera.main;
         }
         else
         {
@@ -48,6 +49,11 @@ public class PlayerController : MonoBehaviour
             currentSpeed = runSpeed;
        else currentSpeed = moveSpeed;
 
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("Mouse position: " + Input.mousePosition);
+            Object.Instantiate(projectile);
+        }
        //Process movement if allowed to move (ex: cutscenes, tutorials, etc)
        if(!lockMovement)
             Move();
@@ -72,5 +78,10 @@ public class PlayerController : MonoBehaviour
         }
 
         
+    }
+
+    private void Fire()
+    {
+
     }
 }

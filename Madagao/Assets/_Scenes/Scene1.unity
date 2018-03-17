@@ -464,6 +464,7 @@ MonoBehaviour:
   moveSpeed: 5
   runSpeed: 8
   rotationSpeed: 5
+  projectile: {fileID: 1108257351454608, guid: 9c9379f172c11294d86280cf871da737, type: 2}
 --- !u!4 &1539786319
 Transform:
   m_ObjectHideFlags: 0
