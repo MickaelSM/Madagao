@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = idleLookDirection;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
        if(Input.GetButton("Sprint"))
             currentSpeed = runSpeed;
@@ -51,8 +51,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2"))
         {
-            Debug.Log("Mouse position: " + Input.mousePosition);
-            Object.Instantiate(projectile);
+            Fire();
         }
        //Process movement if allowed to move (ex: cutscenes, tutorials, etc)
        if(!lockMovement)
@@ -82,6 +81,10 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-
+        
+        Vector3 direction = Camera.main.ScreenPointToRay(Input.mousePosition).direction;
+        Debug.Log("Mouse direction: " + direction);
+        Debug.Log("Mouse direction normalized: " + direction.normalized);
+        GameObject p = Instantiate(projectile, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
     }
 }
