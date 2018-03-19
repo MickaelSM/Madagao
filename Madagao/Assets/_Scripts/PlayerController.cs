@@ -81,10 +81,21 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        
-        Vector3 direction = Camera.main.ScreenPointToRay(Input.mousePosition).direction;
-        Debug.Log("Mouse direction: " + direction);
-        Debug.Log("Mouse direction normalized: " + direction.normalized);
-        GameObject p = Instantiate(projectile, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
+        Vector3 direction = GetMouseHitPoint() - transform.position;
+        Instantiate(projectile, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.LookRotation(direction.normalized));
+    }
+
+    Vector3 GetMouseHitPoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Vector3 pos;
+        if (Physics.Raycast(ray, out hit, 1000, 1 << (int)Layer.Walkable))
+        {
+            pos = hit.point;
+            Debug.Log("Mouse position on world: " + pos);
+            return pos;
+        }
+        return Vector3.zero;
     }
 }
