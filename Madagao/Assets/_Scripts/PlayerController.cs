@@ -81,16 +81,19 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        Vector3 direction = GetMouseHitPoint() - transform.position;
-        Instantiate(projectile, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.LookRotation(direction.normalized));
+        Vector3 origin = transform.GetChild(0).transform.position;
+        Debug.Log(origin);
+        Vector3 direction = GetMouseHitPoint() - origin;
+        Instantiate(projectile, origin, Quaternion.LookRotation(direction.normalized));
     }
 
     Vector3 GetMouseHitPoint()
     {
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Vector3 pos;
-        if (Physics.Raycast(ray, out hit, 1000, 1 << (int)Layer.Walkable))
+        if (Physics.Raycast(ray, out hit, 1000, 1 << (int)Layer.MouseCastDirection))
         {
             pos = hit.point;
             Debug.Log("Mouse position on world: " + pos);

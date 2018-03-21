@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //Enum to store all the layers we wanna handle
-public enum Layer { Walkable = 8, Enemy = 9, RaycastEndStop }
+public enum Layer { Walkable = 8, Enemy = 9, MouseCastDirection = 10, RaycastEndStop }
 
 public class CameraRaycaster : MonoBehaviour
 {

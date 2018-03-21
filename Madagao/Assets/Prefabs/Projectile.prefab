@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54586125660681046}
   - component: {fileID: 114938860793743644}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 20
-  projSpeed: 10
+  projSpeed: 15
 --- !u!135 &135913425127196862
 SphereCollider:
   m_ObjectHideFlags: 1
